@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة هياكل البيانات المتقدمة | الصف الثاني عشر التكنولوجي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800;900;1000&display=swap" rel="stylesheet">
+<style>
+:root {
+  --maroon:#7a1530; --maroon2:#4b0e1e; --gold:#d6a84f; --navy:#07182f; --blue:#0f3b64;
+  --paper:#fffaf0; --card:#ffffff; --ink:#17233a; --muted:#65758b; --line:rgba(8,25,47,.12);
+  --shadow:0 22px 60px rgba(8,25,47,.15); --radius:28px; --green:#12805c; --red:#b42318;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:'Cairo',Tahoma,Arial,sans-serif;color:var(--ink);
+  background:
+    radial-gradient(circle at 8% 4%, rgba(214,168,79,.32), transparent 22%),
+    radial-gradient(circle at 92% 8%, rgba(122,21,48,.22), transparent 24%),
+    linear-gradient(135deg,#fff9ee 0%,#f5fbff 44%,#ffffff 100%);
+}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background-image:linear-gradient(rgba(122,21,48,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(122,21,48,.055) 1px,transparent 1px);
+  background-size:38px 38px;mask-image:linear-gradient(#000,transparent 94%);
+}
+.wrap{width:min(1240px,94vw);margin:auto}
+.hero{padding:30px 0 18px}
+.hero-card{
+  position:relative;overflow:hidden;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.92);
+  border-radius:38px;box-shadow:var(--shadow);padding:32px;
+}
+.hero-card:before{content:"";position:absolute;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(214,168,79,.35),transparent 66%);left:-110px;top:-120px}
+.hero-card:after{content:"</>";position:absolute;left:48px;bottom:-20px;font-size:120px;font-weight:1000;color:rgba(122,21,48,.06);direction:ltr}
+.badge{display:inline-flex;gap:8px;align-items:center;background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;padding:10px 18px;border-radius:999px;font-weight:1000}
+h1{font-size:clamp(34px,5vw,66px);line-height:1.08;margin:16px 0 10px;color:var(--maroon2)}
+.lead{font-size:clamp(16px,2vw,21px);line-height:1.9;color:#4d5b70;font-weight:800;margin:0;max-width:950px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{
+  appearance:none;border:0;text-decoration:none;cursor:pointer;font-family:inherit;font-weight:1000;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:16px;
+  transition:.22s;box-shadow:0 12px 26px rgba(8,25,47,.10);font-size:14px
+}
+.btn:hover{transform:translateY(-3px)}
+.btn.primary{background:linear-gradient(135deg,var(--maroon),#a71943);color:#fff}
+.btn.secondary{background:linear-gradient(135deg,#fff,#fff1ca);color:#5b3d03;border:1px solid rgba(214,168,79,.55)}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn.small{padding:8px 11px;border-radius:12px;box-shadow:none;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px;position:relative;z-index:1}
+.stat{background:#fff;border:1px solid rgba(214,168,79,.38);border-radius:22px;padding:16px;text-align:center}
+.stat b{display:block;color:var(--maroon);font-size:30px;line-height:1}
+.stat span{font-weight:900;color:#5e6a7c}
+.navbar{position:sticky;top:10px;z-index:30;margin:0 auto 20px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(14px);border-radius:999px;box-shadow:var(--shadow);padding:10px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.navbar a{color:#17233a;text-decoration:none;font-weight:1000;padding:9px 12px;border-radius:999px}
+.navbar a:hover{background:#fff;color:var(--maroon)}
+.section{margin:22px 0}
+.panel{background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.94);border-radius:30px;box-shadow:var(--shadow);padding:26px}
+.head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.head h2{margin:0;color:var(--maroon2);font-size:clamp(24px,3vw,38px)}
+.pill{background:#fff4d5;border:1px solid rgba(214,168,79,.58);color:#5b3d03;border-radius:999px;padding:9px 13px;font-weight:1000}
+.note{background:#fff8e8;border:1px solid rgba(214,168,79,.5);border-radius:18px;padding:14px 16px;line-height:1.85;font-weight:900;color:#5b3d03;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 10px 26px rgba(8,25,47,.055)}
+.card h3{margin:0 0 8px;color:var(--maroon2)}
+.card p,.card li{line-height:1.85;color:#556176;font-weight:800}
+.lesson-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tab{border:1px solid rgba(214,168,79,.55);background:#fff;border-radius:999px;padding:10px 14px;font-weight:1000;cursor:pointer;color:#5b3d03}
+.tab.active{background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;border-color:transparent}
+.lesson-body{display:grid;grid-template-columns:1.35fr .65fr;gap:16px;align-items:start}
+.lesson-points{display:grid;gap:10px}
+.point{display:flex;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;font-weight:900;color:#4d5b70;line-height:1.8}
+.point:before{content:"✓";width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,var(--gold),#ffe8a8);color:#593b03;flex:0 0 auto}
+.term{border-bottom:1px solid #eef1f5;padding:10px 0}
+.term b{color:var(--maroon2)}
+.code{direction:ltr;text-align:left;white-space:pre-wrap;background:#08192f;color:#e9f5ff;border-radius:18px;padding:16px;overflow:auto;font-family:Consolas,monospace;line-height:1.6;border:1px solid rgba(214,168,79,.35)}
+.compare{overflow:auto;border:1px solid var(--line);border-radius:20px;background:#fff}
+table{width:100%;border-collapse:collapse;min-width:740px}
+th,td{padding:13px 14px;border-bottom:1px solid #eef1f5;text-align:right;font-weight:850;line-height:1.7}
+th{background:linear-gradient(135deg,var(--navy),var(--maroon));color:#fff}
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stack-view,.queue-view,.linked-view{min-height:170px;background:#fbfcff;border:1px dashed rgba(122,21,48,.28);border-radius:20px;padding:14px;display:flex;align-items:end;gap:8px;justify-content:center;flex-wrap:wrap}
+.stack-view{flex-direction:column-reverse;align-items:center}
+.block{background:linear-gradient(135deg,var(--maroon),#a71943);color:#fff;padding:10px 16px;border-radius:14px;font-weight:1000;min-width:60px;text-align:center;box-shadow:0 8px 18px rgba(122,21,48,.18)}
+.queue-view .block{background:linear-gradient(135deg,var(--navy),#1e5f93)}
+.node{background:#fff;border:2px solid rgba(214,168,79,.7);border-radius:16px;padding:10px 14px;font-weight:1000;color:var(--maroon2);position:relative}
+.node:not(:last-child):after{content:"←";margin:0 8px;color:var(--maroon);font-weight:1000}
+input,select{font-family:inherit;border:1px solid var(--line);border-radius:14px;padding:11px 12px;font-weight:900;min-width:150px}
+.visuals{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.svgbox{background:#fff;border:1px solid var(--line);border-radius:22px;padding:14px;min-height:260px}
+svg text{font-family:'Cairo',sans-serif;font-weight:900}
+.flashcard{min-height:190px;display:grid;place-items:center;text-align:center;background:linear-gradient(135deg,#fff,#fff8e8);border:1px solid rgba(214,168,79,.55);border-radius:24px;padding:22px;cursor:pointer;box-shadow:0 10px 26px rgba(8,25,47,.06)}
+.flashcard h3{font-size:24px;color:var(--maroon2);margin:0;line-height:1.7}
+.quiz-box{display:grid;gap:12px}
+.choice{display:block;width:100%;text-align:right;background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin:8px 0;font-weight:900;cursor:pointer}
+.choice.correct{border-color:rgba(18,128,92,.5);background:#ecfdf3;color:var(--green)}
+.choice.wrong{border-color:rgba(180,35,24,.45);background:#fff1f0;color:var(--red)}
+.progress{height:16px;border-radius:999px;background:#edf1f5;overflow:hidden;border:1px solid var(--line)}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--maroon));transition:.3s}
+.practice-item{border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff;margin-bottom:10px}
+.practice-answer{display:none;background:#f8fbff;border:1px solid #dce9f7;border-radius:14px;padding:12px;margin-top:10px;color:#39485d;font-weight:900;line-height:1.8}
+.page-map{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.page-chip{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;line-height:1.7;font-weight:900;color:#4d5b70}
+.page-chip b{color:var(--maroon2)}
+.float{position:fixed;left:16px;bottom:16px;z-index:40;display:grid;gap:8px}
+.toast{position:fixed;right:50%;bottom:24px;transform:translateX(50%) translateY(90px);background:linear-gradient(135deg,var(--navy),var(--maroon));color:#fff;padding:12px 16px;border-radius:16px;font-weight:1000;box-shadow:var(--shadow);transition:.3s;z-index:50}
+.toast.show{transform:translateX(50%) translateY(0)}
+.footer{text-align:center;color:#667085;font-weight:900;line-height:1.9;margin:30px 0}
+kbd{background:#f1f5f9;border:1px solid #d8e0ea;border-radius:8px;padding:2px 6px;direction:ltr}
+@media(max-width:1050px){.grid,.page-map{grid-template-columns:repeat(2,1fr)}.lesson-body,.sim,.visuals{grid-template-columns:1fr}}
+@media(max-width:780px){.stats,.grid,.grid2,.page-map{grid-template-columns:1fr}.panel,.hero-card{padding:20px}.navbar{border-radius:22px}.float{position:static;width:min(1240px,94vw);margin:20px auto}h1{font-size:34px}}
+@media print{.navbar,.float,.actions,.btn{display:none!important}body{background:#fff}.panel,.hero-card,.card{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero" id="top">
+    <div class="hero-card">
+      <span class="badge">💻 منصة تفاعلية فاخرة • علم الحاسب • Python</span>
+      <h1>هياكل البيانات المتقدمة</h1>
+      <p class="lead">درس تفاعلي شامل يغطي محتوى Booklet علم الحاسب للصف الثاني عشر التكنولوجي: هياكل البيانات، المكدس، الطابور، المكتبة القياسية، القائمة المرتبطة، الأشجار، والمخططات، مع محاكاة عملية وأسئلة وتدريبات واختبار ذاتي.</p>
+      <div class="actions">
+        <a class="btn primary" href="#lessons">ابدأ التعلم</a>
+        <a class="btn secondary" href="#simulators">المحاكاة العملية</a>
+        <a class="btn secondary" href="#quiz">الاختبار التفاعلي</a>
+        <button class="btn ghost" onclick="window.print()">طباعة</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>7</b><span>محاور تعليمية</span></div>
+        <div class="stat"><b>28</b><span>سؤال اختبار</span></div>
+        <div class="stat"><b>15</b><span>بطاقة مراجعة</span></div>
+        <div class="stat"><b>41</b><span>صفحة مصدر</span></div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="navbar">
+    <a href="#map">خريطة المحتوى</a>
+    <a href="#lessons">الدروس</a>
+    <a href="#comparisons">المقارنات</a>
+    <a href="#simulators">المحاكاة</a>
+    <a href="#visuals">الشجرة والمخطط</a>
+    <a href="#flashcards">بطاقات</a>
+    <a href="#practice">تدريبات</a>
+    <a href="#quiz">اختبار</a>
+  </nav>
+
+  <section class="section" id="map">
+    <div class="panel">
+      <div class="head"><h2>خريطة المحتوى</h2><span class="pill">منظم حسب صفحات المصدر</span></div>
+      <div class="note">📚 تذكير: هذه المنصة التفاعلية لا تغني عن دراسة الكتاب المدرسي ومصدر التعلم الرئيس، بل تساعدك على الفهم والمراجعة والتطبيق.</div>
+      <div class="page-map">
+        <div class="page-chip"><b>ص 1</b><br>غلاف booklet علم الحاسب Python للصف الثاني عشر التكنولوجي.</div><div class="page-chip"><b>ص 2</b><br>تعريف هياكل البيانات وتصنيفها إلى بسيطة وغير بسيطة وخطية وغير خطية.</div><div class="page-chip"><b>ص 3-7</b><br>شرح المكدس Stack وتمثيله وتمارينه العملية.</div><div class="page-chip"><b>ص 8-12</b><br>شرح الطابور Queue وتمثيله وتمارينه العملية.</div><div class="page-chip"><b>ص 13-16</b><br>استخدام مكتبة queue القياسية وسيناريوهات عملية مثل الطباعة ودخول المشجعين.</div><div class="page-chip"><b>ص 17-19</b><br>أسئلة مقارنة وتمثيل ومواقف تطبيقية على Stack وQueue.</div><div class="page-chip"><b>ص 20-28</b><br>القائمة المرتبطة Linked List، الهياكل الديناميكية، العقد، والمؤشرات.</div><div class="page-chip"><b>ص 29-35</b><br>الأشجار Trees، المصطلحات، الأنواع، التطبيقات، وتمثيلها برمجيًا.</div><div class="page-chip"><b>ص 36-41</b><br>المخططات Graphs، الفرق عن الأشجار، الأنواع، التطبيقات، والتمارين.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="lessons">
+    <div class="panel">
+      <div class="head"><h2>الدروس التفاعلية</h2><span class="pill">اضغط على أي درس لعرض الشرح</span></div>
+      <div class="lesson-tabs" id="lessonTabs"></div>
+      <div id="lessonContent"></div>
+    </div>
+  </section>
+
+  <section class="section" id="comparisons">
+    <div class="panel">
+      <div class="head"><h2>جداول المقارنة المهمة</h2><span class="pill">للحفظ والفهم السريع</span></div>
+      <div id="compareTables"></div>
+    </div>
+  </section>
+
+  <section class="section" id="simulators">
+    <div class="panel">
+      <div class="head"><h2>محاكاة عملية للمكدس والطابور</h2><span class="pill">تجربة Push / Pop / Enqueue / Dequeue</span></div>
+      <div class="sim">
+        <div class="card">
+          <h3>محاكي المكدس Stack</h3>
+          <p>اكتب قيمة ثم جرّب الإضافة والحذف. السعة القصوى 5 عناصر لعرض Overflow.</p>
+          <div class="actions">
+            <input id="stackInput" placeholder="قيمة للمكدس">
+            <button class="btn primary small" onclick="pushStack()">Push</button>
+            <button class="btn secondary small" onclick="popStack()">Pop</button>
+            <button class="btn ghost small" onclick="resetStack()">تفريغ</button>
+          </div>
+          <div class="stack-view" id="stackView"></div>
+          <div class="note" id="stackNote">Top يشير إلى أعلى عنصر في المكدس.</div>
+        </div>
+        <div class="card">
+          <h3>محاكي الطابور Queue</h3>
+          <p>اكتب قيمة ثم جرّب الإضافة والحذف. الإضافة من Rear والحذف من Front.</p>
+          <div class="actions">
+            <input id="queueInput" placeholder="قيمة للطابور">
+            <button class="btn primary small" onclick="enqueue()">Enqueue</button>
+            <button class="btn secondary small" onclick="dequeue()">Dequeue</button>
+            <button class="btn ghost small" onclick="resetQueue()">تفريغ</button>
+          </div>
+          <div class="queue-view" id="queueView"></div>
+          <div class="note" id="queueNote">Front عند أول عنصر وRear عند آخر عنصر.</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <h3>محاكي القائمة المرتبطة Linked List</h3>
+        <p>أضف عقدًا وشاهد ارتباط العقد بالمؤشرات.</p>
+        <div class="actions">
+          <input id="nodeInput" placeholder="بيانات العقدة">
+          <button class="btn primary small" onclick="addNode()">إضافة عقدة</button>
+          <button class="btn secondary small" onclick="removeNode()">حذف آخر عقدة</button>
+          <button class="btn ghost small" onclick="resetNodes()">تفريغ</button>
+        </div>
+        <div class="linked-view" id="linkedView"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visuals">
+    <div class="panel">
+      <div class="head"><h2>تصور الشجرة والمخطط</h2><span class="pill">تمثيل بصري سريع</span></div>
+      <div class="visuals">
+        <div class="svgbox">
+          <h3>شجرة ثنائية Binary Tree</h3>
+          <svg viewBox="0 0 520 260" width="100%" height="240">
+            <line x1="260" y1="55" x2="150" y2="130" stroke="#d6a84f" stroke-width="5"/>
+            <line x1="260" y1="55" x2="370" y2="130" stroke="#d6a84f" stroke-width="5"/>
+            <line x1="150" y1="130" x2="95" y2="210" stroke="#d6a84f" stroke-width="5"/>
+            <line x1="150" y1="130" x2="205" y2="210" stroke="#d6a84f" stroke-width="5"/>
+            <circle cx="260" cy="55" r="34" fill="#7a1530"/><text x="260" y="63" fill="white" text-anchor="middle">Root</text>
+            <circle cx="150" cy="130" r="32" fill="#08192f"/><text x="150" y="138" fill="white" text-anchor="middle">Parent</text>
+            <circle cx="370" cy="130" r="32" fill="#08192f"/><text x="370" y="138" fill="white" text-anchor="middle">Child</text>
+            <circle cx="95" cy="210" r="30" fill="#d6a84f"/><text x="95" y="218" fill="#4b0e1e" text-anchor="middle">Leaf</text>
+            <circle cx="205" cy="210" r="30" fill="#d6a84f"/><text x="205" y="218" fill="#4b0e1e" text-anchor="middle">Leaf</text>
+          </svg>
+          <p>الجذر في الأعلى، والعقد النهائية تسمى أوراقًا.</p>
+        </div>
+        <div class="svgbox">
+          <h3>مخطط Graph</h3>
+          <svg viewBox="0 0 520 260" width="100%" height="240">
+            <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7a1530"/></marker></defs>
+            <line x1="120" y1="80" x2="260" y2="50" stroke="#7a1530" stroke-width="4" marker-end="url(#arrow)"/>
+            <line x1="260" y1="50" x2="400" y2="100" stroke="#7a1530" stroke-width="4" marker-end="url(#arrow)"/>
+            <line x1="400" y1="100" x2="310" y2="205" stroke="#7a1530" stroke-width="4" marker-end="url(#arrow)"/>
+            <line x1="120" y1="80" x2="190" y2="205" stroke="#d6a84f" stroke-width="4"/>
+            <line x1="190" y1="205" x2="310" y2="205" stroke="#d6a84f" stroke-width="4"/>
+            <circle cx="120" cy="80" r="32" fill="#08192f"/><text x="120" y="88" fill="white" text-anchor="middle">A</text>
+            <circle cx="260" cy="50" r="32" fill="#08192f"/><text x="260" y="58" fill="white" text-anchor="middle">B</text>
+            <circle cx="400" cy="100" r="32" fill="#08192f"/><text x="400" y="108" fill="white" text-anchor="middle">C</text>
+            <circle cx="190" cy="205" r="32" fill="#d6a84f"/><text x="190" y="213" fill="#4b0e1e" text-anchor="middle">D</text>
+            <circle cx="310" cy="205" r="32" fill="#d6a84f"/><text x="310" y="213" fill="#4b0e1e" text-anchor="middle">E</text>
+          </svg>
+          <p>الأسهم تمثل مخططًا موجهًا، والخطوط بدون أسهم تمثل علاقات غير موجهة.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="flashcards">
+    <div class="panel">
+      <div class="head"><h2>بطاقات مراجعة ذكية</h2><span class="pill">اضغط على البطاقة لإظهار الإجابة</span></div>
+      <div class="flashcard" id="flashcard" onclick="flipCard()"><h3 id="flashText"></h3></div>
+      <div class="actions">
+        <button class="btn secondary" onclick="prevCard()">السابق</button>
+        <button class="btn primary" onclick="nextCard()">التالي</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="practice">
+    <div class="panel">
+      <div class="head"><h2>تدريبات بنمط الاختبار</h2><span class="pill">مع إظهار الحل</span></div>
+      <div id="practiceList"></div>
+    </div>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="panel">
+      <div class="head"><h2>اختبار تفاعلي شامل</h2><span class="pill">تصحيح فوري + شرح</span></div>
+      <div class="progress"><span id="quizProgress"></span></div>
+      <div id="quizBox" class="quiz-box"></div>
+      <div class="actions">
+        <button class="btn secondary" onclick="prevQuestion()">السابق</button>
+        <button class="btn primary" onclick="nextQuestion()">التالي</button>
+        <button class="btn ghost" onclick="restartQuiz()">إعادة الاختبار</button>
+      </div>
+      <div class="note" id="quizResult">ابدأ بالإجابة عن الأسئلة لعرض النتيجة.</div>
+    </div>
+  </section>
+
+  <section class="section" id="codes">
+    <div class="panel">
+      <div class="head"><h2>مختبر Python السريع</h2><span class="pill">نماذج قابلة للنسخ</span></div>
+      <div class="grid2">
+        <div class="card"><h3>مكدس مع التحقق من Overflow / Underflow</h3><pre class="code">MAX_SIZE = 3
+stack = []
+
+def push(x):
+    if len(stack) == MAX_SIZE:
+        print("Overflow")
+    else:
+        stack.append(x)
+
+def pop():
+    if len(stack) == 0:
+        print("Underflow")
+    else:
+        print(stack.pop())</pre></div>
+        <div class="card"><h3>طابور باستخدام مكتبة queue</h3><pre class="code">import queue
+
+q = queue.Queue()
+q.put("CS")
+q.put("IT")
+
+while not q.empty():
+    print(q.get())</pre></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    منصة مراجعة تفاعلية فاخرة لمحتوى هياكل البيانات المتقدمة • علم الحاسب • الصف الثاني عشر التكنولوجي<br>
+    إعداد وتصميم: المعلم سامر جديع
+  </div>
+</div>
+
+<div class="float">
+  <a class="btn primary small" href="#top">⬆ أعلى</a>
+  <button class="btn secondary small" onclick="window.print()">🖨 طباعة</button>
+</div>
+<div class="toast" id="toast">تم</div>
+
+<script>
+const lessons = [{"id": "intro", "title": "مدخل إلى هياكل البيانات", "subtitle": "تصنيف هياكل البيانات وسبب استخدامها", "page": "ص 2", "points": ["هياكل البيانات تقنية لتخزين البيانات في الذاكرة وتنظيم الوصول إليها بكفاءة وسهولة.", "تصنف إلى هياكل بيانات بسيطة مثل Integer وFloat وCharacter وBoolean.", "وتصنف إلى هياكل بيانات غير بسيطة ينشئها المبرمج لتخزين مجموعة من القيم.", "الهياكل غير البسيطة قد تكون خطية مثل List وArray وTuple وDictionary وStack وQueue وLinked List، أو غير خطية مثل Trees وGraphs."], "keyterms": [["هياكل البيانات", "طريقة منظمة لتخزين البيانات والوصول إليها ومعالجتها."], ["الهياكل الخطية", "عناصرها مرتبة بتسلسل معين."], ["الهياكل غير الخطية", "عناصرها مرتبطة بشكل غير تسلسلي، مثل الأشجار والمخططات."]]}, {"id": "stack", "title": "المكدس Stack", "subtitle": "قاعدة LIFO وآليات Push وPop", "page": "ص 3 - 7", "points": ["المكدس هيكل بيانات خطي غير بسيط يتم تكديس عناصره على التوالي ويتبع قاعدة: آخر من يدخل أول من يخرج LIFO.", "العمليات الأساسية: Push لإضافة عنصر إلى أعلى المكدس، وPop لحذف العنصر من أعلى/قمة المكدس.", "المؤشر Top يشير إلى العنصر الموجود أعلى المكدس.", "يتم تمثيل المكدسات في Python باستخدام القوائم، وتتم الإضافة والحذف من نفس الطرف.", "من تطبيقاته العملية: أمر التراجع Undo.", "Overflow يحدث عند الإضافة إلى مكدس ممتلئ، وUnderflow يحدث عند الحذف من مكدس فارغ."], "keyterms": [["LIFO", "Last In First Out: آخر عنصر يدخل هو أول عنصر يخرج."], ["Push", "إدخال عنصر إلى أعلى المكدس."], ["Pop", "حذف آخر عنصر من أعلى المكدس."], ["Top", "مؤشر قمة المكدس."]], "code": "Stack1 = []\nStack1.append(3)\nStack1.append(1)\nStack1.append(1)\nStack1.pop()\nprint(Stack1)  # [3, 1]"}, {"id": "queue", "title": "الطابور Queue", "subtitle": "قاعدة FIFO ومؤشرا Front وRear", "page": "ص 8 - 12", "points": ["الطابور هيكل بيانات خطي غير بسيط يتم التعامل مع العنصر حسب ترتيب وصوله ويتبع قاعدة: أول من يدخل أول من يخرج FIFO.", "تتم الإضافة Enqueue في آخر الطابور، وتتم الإزالة Dequeue من مقدمة الطابور.", "المؤشر Front يشير إلى أول عنصر في الطابور، والمؤشر Rear يشير إلى آخر عنصر في الطابور.", "يمثل الطابور في Python غالبًا باستخدام القائمة، حيث append للإضافة وpop(0) للحذف من البداية.", "تطبيقات الطابور: طابور الطباعة، طابور السيارات، وتنظيم الدخول أو الانتظار."], "keyterms": [["FIFO", "First In First Out: أول عنصر يدخل هو أول عنصر يخرج."], ["Enqueue", "إضافة عنصر إلى آخر الطابور."], ["Dequeue", "إزالة العنصر من مقدمة الطابور."], ["Front / Rear", "مؤشر البداية والنهاية في الطابور."]], "code": "Queue1 = []\nQueue1.append(2)\nQueue1.append(4)\nQueue1.pop(0)\nprint(Queue1)  # [4]"}, {"id": "library", "title": "المكتبة القياسية queue", "subtitle": "تمثيل المكدس والطابور بدوال جاهزة", "page": "ص 13 - 16", "points": ["تستخدم مكتبة queue في Python لإنشاء طابور أو مكدس بدوال جاهزة.", "queue.Queue() لإنشاء طابور، وqueue.LifoQueue() لإنشاء مكدس.", "put(x) لإضافة عنصر، وget() لجلب وإزالة عنصر.", "qsize() لإرجاع الحجم، وfull() للتحقق من الامتلاء، وempty() للتحقق من الفراغ.", "يمكن طباعة عناصر queue باستخدام Queue.queue أو list(Queue.queue).", "تؤكد التمارين على التحقق من مدخلات المستخدم وعدم الثقة بها مباشرة."], "keyterms": [["queue.Queue()", "إنشاء طابور جاهز."], ["queue.LifoQueue()", "إنشاء مكدس جاهز."], ["put / get", "إضافة عنصر / جلب وإزالة عنصر."], ["empty / full / qsize", "فحص الفراغ والامتلاء والحجم."]], "code": "import queue\n\nq = queue.Queue()\nq.put(\"Q\")\nq.put(\"A\")\nq.put(\"T\")\nprint(list(q.queue))\nprint(q.get())\nprint(q.qsize())"}, {"id": "linked", "title": "القائمة المرتبطة Linked List", "subtitle": "العقد والمؤشرات والذاكرة الديناميكية", "page": "ص 20 - 28", "points": ["القائمة المرتبطة هي هيكل بيانات خطي يتكون من سلسلة من العقد المتتالية.", "كل عقدة غالبًا تتكون من حقلين: البيانات والمؤشر الذي يشير إلى العقدة التالية.", "تنتمي القوائم المرتبطة إلى الهياكل الديناميكية التي يمكن زيادة حجمها أو تقليصها تلقائيًا.", "ليست العقد مخزنة بشكل متجاور في الذاكرة، والوصول إليها يكون تسلسليًا.", "القائمة العادية أسرع في الوصول العشوائي، بينما القائمة المرتبطة أسرع في الإضافة والإزالة.", "من تطبيقاتها: تخصيص الذاكرة الديناميكية، متصفح الويب، عارض الصور، وملفات الصوت."], "keyterms": [["Node", "عقدة تحتوي بيانات ومؤشرًا."], ["Pointer / Next", "عنوان العقدة التالية."], ["Dynamic Structure", "هيكل قابل للنمو أو التقليص أثناء التنفيذ."], ["Head", "العقدة الأولى التي يبدأ منها الوصول إلى القائمة."]], "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nfirst = Node(\"Sunday\")\nsecond = Node(\"Monday\")\nfirst.next = second"}, {"id": "trees", "title": "الأشجار Trees", "subtitle": "هياكل غير خطية بترتيب هرمي", "page": "ص 29 - 35", "points": ["الشجرة هي هيكل بيانات غير خطي يتكون من مجموعة عقد مرتبة بشكل هرمي.", "يوجد جذر واحد فقط في كل شجرة بيانات.", "عقدة الجذر ليس لها أب، والورقة لا تحتوي على أبناء، وعقدة الأب لها ابن واحد أو أكثر.", "الشجرة الثنائية حالة خاصة من الأشجار ولها على الأكثر ابنان: أيسر وأيمن.", "أنواع الشجرة الثنائية: ممتلئة، كاملة، وتامة.", "تستخدم الأشجار في هياكل المجلدات، الفهرسة في قواعد البيانات، الذكاء الاصطناعي، وشجرة القرار."], "keyterms": [["Root", "عقدة الجذر في المستوى الأول."], ["Leaf", "عقدة لا تحتوي أبناء."], ["Parent / Child", "علاقة أب وابن بين العقد."], ["Binary Tree", "شجرة لكل عقدة فيها على الأكثر ابنان."]], "code": "tree = {\n    \"School\": {\n        \"Grade 12\": [\"CS\", \"IT\"],\n        \"Grade 11\": [\"Technology\"]\n    }\n}\nprint(tree)"}, {"id": "graphs", "title": "المخططات Graphs", "subtitle": "شبكات من العقد والأضلاع", "page": "ص 36 - 41", "points": ["المخطط هيكل بيانات غير خطي يتكون من عقد/نقاط وخطوط/أضلاع تربط جميع العقد بشكل شبكي.", "الأشجار حالة خاصة من المخططات؛ فكل شجرة مخطط، وليس كل مخطط شجرة.", "المخططات نوعان: موجهة ترتبط فيها العقد بأضلاع لها اتجاه واحد، وغير موجهة لا يكون فيها الارتباط محددًا باتجاه.", "المخططات الموجهة تمثل مثلًا صفحات الويب والارتباطات التشعبية.", "المخططات غير الموجهة تمثل علاقات الصداقة أو الطرق ذات الاتجاهين.", "تستخدم المخططات في أنظمة التشغيل، قواعد البيانات، الألعاب، الذكاء الاصطناعي، شبكات الحاسوب، واقتراح الأصدقاء."], "keyterms": [["Vertex / Node", "العقدة أو النقطة في المخطط."], ["Edge", "الضلع أو الرابط بين عقدتين."], ["Directed Graph", "مخطط موجه بأسهم واتجاه حركة واحد."], ["Undirected Graph", "مخطط غير موجه باتجاهين أو دون أسهم."]], "code": "graph = {\n    \"Al Thumama\": [\"Al Bayt\", \"974\"],\n    \"974\": [\"Al Thumama\", \"Al Bayt\"],\n    \"Al Rayyan\": [\"Education City\", \"Al Bayt\"]\n}\nprint(graph)"}];
+const comparisons = [["المكدس Stack", "الطابور Queue", [["القاعدة", "LIFO: آخر من يدخل أول من يخرج", "FIFO: أول من يدخل أول من يخرج"], ["المؤشرات", "Top", "Front و Rear"], ["الإضافة والحذف", "من نفس الطرف", "الإضافة من طرف والحذف من الطرف الآخر"], ["Python بالقوائم", "append() و pop()", "append() و pop(0)"], ["تطبيق", "Undo / التراجع", "طابور الطباعة أو السيارات"]]], ["القائمة List", "القائمة المرتبطة Linked List", [["التخزين", "متسلسل غالبًا", "غير متسلسل عبر العقد والمؤشرات"], ["الوصول", "عشوائي أسرع", "تسلسلي أبطأ"], ["الإضافة والحذف", "أبطأ نسبيًا", "أسرع نسبيًا"], ["الذاكرة", "للبيانات", "للبيانات والمؤشرات"]]], ["الأشجار Trees", "المخططات Graphs", [["الشكل", "هرمي", "شبكي"], ["الجذر", "يوجد جذر", "لا يشترط وجود جذر"], ["العلاقات", "أبناء وآباء", "علاقات عامة بين العقد"], ["التعقيد", "أبسط", "أكثر عمومية وتعقيدًا"]]], ["المخطط الموجه", "المخطط غير الموجه", [["الشكل", "أسهم", "بدون أسهم غالبًا"], ["اتجاه الحركة", "اتجاه واحد", "اتجاهان"], ["مثال", "روابط صفحات الويب", "الصداقة أو الطرق المتبادلة"]]]];
+const flashcards = [["ما تعريف هيكل البيانات؟", "تقنية لتخزين البيانات وتنظيم الوصول إليها بكفاءة وسهولة."], ["ما قاعدة المكدس؟", "LIFO: آخر من يدخل أول من يخرج."], ["ما عملية Push؟", "إضافة عنصر إلى أعلى المكدس."], ["ما عملية Pop في المكدس؟", "حذف العنصر من أعلى المكدس."], ["ما معنى Overflow؟", "محاولة إضافة عنصر إلى مكدس ممتلئ."], ["ما معنى Underflow؟", "محاولة حذف عنصر من مكدس فارغ."], ["ما قاعدة الطابور؟", "FIFO: أول من يدخل أول من يخرج."], ["ما الفرق بين pop() و pop(0)؟", "pop() يحذف آخر عنصر، وpop(0) يحذف أول عنصر."], ["ما فائدة qsize؟", "إرجاع حجم الطابور أو عدد عناصره."], ["ما وظيفة empty؟", "ترجع True إذا كان الهيكل فارغًا."], ["ما القائمة المرتبطة؟", "سلسلة من عقد، كل عقدة تحتوي بيانات ومؤشرًا."], ["ما الجذر في الشجرة؟", "العقدة الوحيدة التي ليس لها أب وتقع في المستوى الأول."], ["ما الورقة؟", "عقدة لا تحتوي على أبناء."], ["ما المخطط؟", "هيكل غير خطي من عقد وأضلاع تربطها."], ["لماذا كل شجرة مخطط وليس كل مخطط شجرة؟", "لأن الشجرة شكل خاص من المخططات له تنظيم هرمي وقيود محددة."]];
+const quiz = [{"q": "أي عبارة تصف هياكل البيانات؟", "choices": ["طريقة لتلوين النص", "تقنية لتخزين البيانات وتنظيم الوصول إليها", "أمر لطباعة الشاشة", "نوع من أنواع المتغيرات فقط"], "a": 1, "ex": "هياكل البيانات تهدف إلى تنظيم التخزين والوصول والمعالجة."}, {"q": "أي مما يلي يعد هيكل بيانات بسيطًا؟", "choices": ["Stack", "Queue", "Integer", "Graph"], "a": 2, "ex": "Integer من الهياكل البسيطة/الأولية."}, {"q": "المكدس يتبع قاعدة:", "choices": ["FIFO", "LIFO", "Random", "Tree"], "a": 1, "ex": "Stack يعمل بقاعدة Last In First Out."}, {"q": "العملية التي تضيف عنصرًا إلى أعلى المكدس تسمى:", "choices": ["Pop", "Push", "Front", "Rear"], "a": 1, "ex": "Push هي عملية الإضافة في المكدس."}, {"q": "إذا حذفنا من مكدس فارغ تحدث مشكلة:", "choices": ["Overflow", "Underflow", "Enqueue", "Dequeue"], "a": 1, "ex": "Underflow تحدث عند الحذف من هيكل فارغ."}, {"q": "الأمر المناسب لإضافة عنصر إلى قائمة Python تمثل مكدسًا:", "choices": ["append(x)", "pop(0)", "qsize()", "empty()"], "a": 0, "ex": "append يضيف إلى نهاية القائمة والتي تمثل أعلى المكدس."}, {"q": "الأمر pop() في القائمة يحذف:", "choices": ["أول عنصر", "آخر عنصر", "كل العناصر", "العنصر الأوسط دائمًا"], "a": 1, "ex": "pop() بدون فهرس يحذف آخر عنصر."}, {"q": "الطابور يتبع قاعدة:", "choices": ["LIFO", "FIFO", "Binary", "Linked"], "a": 1, "ex": "Queue يعمل بقاعدة First In First Out."}, {"q": "في الطابور، المؤشر الذي يشير إلى أول عنصر هو:", "choices": ["Top", "Rear", "Front", "Root"], "a": 2, "ex": "Front يشير إلى مقدمة الطابور."}, {"q": "في Python بالقوائم، حذف أول عنصر من الطابور يتم غالبًا باستخدام:", "choices": ["pop()", "pop(0)", "append()", "put()"], "a": 1, "ex": "pop(0) يزيل العنصر ذي الفهرس 0."}, {"q": "أي مثال يمثل تطبيقًا عمليًا للطابور؟", "choices": ["أمر التراجع", "طابور الطباعة", "قمة الجبل", "الجذر"], "a": 1, "ex": "طابور الطباعة يعالج الطلبات حسب ترتيب وصولها."}, {"q": "لإنشاء طابور من مكتبة queue نستخدم:", "choices": ["queue.Queue()", "queue.LifoQueue()", "list.pop()", "Node()"], "a": 0, "ex": "Queue() تنشئ طابورًا جاهزًا."}, {"q": "لإنشاء مكدس من مكتبة queue نستخدم:", "choices": ["queue.Queue()", "queue.LifoQueue()", "queue.Graph()", "queue.Tree()"], "a": 1, "ex": "LifoQueue تنفذ سلوك المكدس."}, {"q": "الدالة get() في مكتبة queue تقوم بـ:", "choices": ["إضافة عنصر", "جلب وإزالة عنصر", "تغيير اللون", "إنشاء فئة"], "a": 1, "ex": "get تجلب وتزيل حسب نوع الهيكل."}, {"q": "القائمة المرتبطة تتكون من:", "choices": ["عقد متتالية", "صفحات ويب فقط", "جداول ثابتة", "أرقام عشوائية فقط"], "a": 0, "ex": "Linked List سلسلة من العقد."}, {"q": "العقدة في القائمة المرتبطة غالبًا تحتوي:", "choices": ["لونًا وصورة", "بيانات ومؤشرًا", "جذرًا فقط", "ثلاثة طوابير"], "a": 1, "ex": "كل Node تحتوي data و next عادة."}, {"q": "القائمة المرتبطة تنتمي إلى الهياكل:", "choices": ["الثابتة فقط", "الديناميكية", "البسيطة", "غير القابلة للتعديل"], "a": 1, "ex": "يمكن زيادة حجمها أو تقليصها أثناء التنفيذ."}, {"q": "الوصول إلى بيانات القائمة المرتبطة يكون عادة:", "choices": ["عشوائيًا مباشرًا", "تسلسليًا", "لا يمكن الوصول", "بالألوان"], "a": 1, "ex": "نبدأ من الرأس ونتبع المؤشرات."}, {"q": "الشجرة هي هيكل بيانات:", "choices": ["خطي", "غير خطي هرمي", "صوتي", "نصي فقط"], "a": 1, "ex": "Trees هياكل غير خطية بترتيب هرمي."}, {"q": "العقدة الوحيدة التي ليس لها أب في الشجرة هي:", "choices": ["Leaf", "Root", "Rear", "Top"], "a": 1, "ex": "Root هي عقدة الجذر."}, {"q": "العقدة التي لا تحتوي على أبناء تسمى:", "choices": ["جذر", "ورقة", "قائمة", "طابور"], "a": 1, "ex": "Leaf هي الورقة."}, {"q": "الشجرة الثنائية لها على الأكثر:", "choices": ["ابن واحد", "ابنان", "ثلاثة أبناء", "عدد غير محدود دائمًا"], "a": 1, "ex": "Binary Tree لها ابن أيسر وأيمن كحد أقصى."}, {"q": "من تطبيقات الأشجار:", "choices": ["هياكل المجلدات", "إيقاف الصوت", "تلوين الخلفية", "حذف الملف فقط"], "a": 0, "ex": "المجلدات تمثل علاقات هرمية."}, {"q": "المخطط Graph يتكون من:", "choices": ["عقد وأضلاع", "Top فقط", "Front فقط", "أوراق فقط"], "a": 0, "ex": "Graph شبكة من vertices/edges."}, {"q": "العلاقة بين الأشجار والمخططات:", "choices": ["كل مخطط شجرة", "كل شجرة مخطط وليس العكس", "لا علاقة بينهما", "كل شجرة طابور"], "a": 1, "ex": "الشجرة حالة خاصة من المخططات."}, {"q": "المخطط الموجه يحتوي على:", "choices": ["أسهم أو اتجاه محدد", "جذر واحد فقط", "Top", "أبناء فقط"], "a": 0, "ex": "Directed Graph له اتجاهات على الأضلاع."}, {"q": "مواقع الويب والروابط التشعبية تمثل غالبًا:", "choices": ["مخططًا موجهًا", "مكدسًا فقط", "شجرة تامة دائمًا", "عددًا صحيحًا"], "a": 0, "ex": "الرابط من صفحة إلى صفحة يمثل اتجاهًا."}, {"q": "علاقة الصداقة المتبادلة تمثل غالبًا:", "choices": ["مخططًا غير موجه", "مكدسًا", "Queue فقط", "Float"], "a": 0, "ex": "الصداقة غالبًا علاقة باتجاهين بعد القبول."}];
+const practice = [["أكمل تمثيل المكدس: Stack1=[] ثم append(1), append(2), pop(), append(3).", "النتيجة النهائية: [1, 3] والمؤشر Top عند 3."], ["أكمل تمثيل المكدس: Stack1=[4,7,9] ثم pop(), append('1'), append(2).", "بعد pop تصبح [4,7] ثم ['1'] يضاف كنص ثم 2: [4, 7, '1', 2]. إذا كانت السعة القصوى 3 فالإضافة الأخيرة تسبب Overflow."], ["أكمل تمثيل الطابور: Queue1=[] ثم append(2), append(4), pop(0).", "النتيجة النهائية: [4]. Front وRear عند 4 إذا كان عنصرًا واحدًا."], ["أكمل تمثيل الطابور: Queue1=[] ثم pop(0), append(2), append(3), append(4).", "أول pop على فارغ يسبب Underflow أو خطأ، ثم يصبح الطابور [2,3,4]."], ["قارن بين pop() و pop(0).", "pop() يحذف آخر عنصر ويمثل حذف المكدس، بينما pop(0) يحذف أول عنصر ويمثل حذف الطابور."], ["اكتب فكرة برنامج لإدارة دخول المشجعين في كأس العالم.", "يستخدم طابورًا لأن أول مشجع يسجل يكون أول مشجع يدخل، مع التحقق من المدخلات وعدم الثقة بها مباشرة."], ["ارسم قائمة مرتبطة لقيم: Sunday → Monday → Tuesday.", "Head يشير إلى Sunday، ومؤشر Sunday.next يشير إلى Monday، وMonday.next يشير إلى Tuesday، وTuesday.next = None."], ["لماذا القائمة المرتبطة ديناميكية؟", "لأنها تسمح بإضافة أو حذف العقد دون الحاجة لحجم ثابت ومتجاور في الذاكرة."], ["حدد الجذر والورقة في شجرة بسيطة.", "الجذر هو العقدة الأولى في الأعلى، والورقة هي أي عقدة لا تملك أبناء."], ["لماذا تعتبر أشجار القرار مفيدة؟", "لأنها تمثل الشروط والقرارات بشكل مرئي يسهل تتبعه والتحقق منه."], ["ما نوع مخطط صفحات الويب؟", "مخطط موجه لأن الرابط من صفحة إلى أخرى له اتجاه."], ["ما نوع مخطط الصداقة؟", "غالبًا غير موجه لأن العلاقة تصبح متبادلة بعد القبول."]];
+
+let activeLesson = 0;
+let stack = [];
+let queueArr = [];
+let nodes = [];
+let flashIndex = 0;
+let flashAnswer = false;
+let qIndex = 0;
+let answers = Array(quiz.length).fill(null);
+
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1400); }
+
+function renderLessonTabs(){
+  const tabs = document.getElementById('lessonTabs');
+  tabs.innerHTML = lessons.map((l,i)=>`<button class="tab ${i===activeLesson?'active':''}" onclick="showLesson(${i})">${l.title}</button>`).join('');
+}
+function showLesson(i){
+  activeLesson = i; renderLessonTabs();
+  const l = lessons[i];
+  document.getElementById('lessonContent').innerHTML = `
+    <div class="lesson-body">
+      <div>
+        <div class="head"><h2>${l.title}</h2><span class="pill">${l.page}</span></div>
+        <div class="note">${l.subtitle}</div>
+        <div class="lesson-points">${l.points.map(p=>`<div class="point">${p}</div>`).join('')}</div>
+        ${l.code ? `<h3 style="color:var(--maroon2)">مثال Python</h3><pre class="code">${l.code}</pre>` : ''}
+      </div>
+      <div class="card">
+        <h3>مصطلحات الدرس</h3>
+        ${l.keyterms.map(t=>`<div class="term"><b>${t[0]}</b><br><span>${t[1]}</span></div>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderComparisons(){
+  document.getElementById('compareTables').innerHTML = comparisons.map(c=>`
+    <div class="card" style="margin-bottom:14px">
+      <h3>${c[0]} × ${c[1]}</h3>
+      <div class="compare"><table><thead><tr><th>وجه المقارنة</th><th>${c[0]}</th><th>${c[1]}</th></tr></thead>
+      <tbody>${c[2].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table></div>
+    </div>`).join('');
+}
+
+function renderStack(){
+  const v=document.getElementById('stackView');
+  v.innerHTML = stack.length ? stack.map((x,i)=>`<div class="block">${x}${i===stack.length-1?' ▲ Top':''}</div>`).join('') : '<span class="pill">المكدس فارغ</span>';
+}
+function pushStack(){
+  const val=document.getElementById('stackInput').value.trim() || (stack.length+1);
+  if(stack.length>=5){ document.getElementById('stackNote').textContent='Overflow: لا يمكن الإضافة لأن المكدس ممتلئ.'; toast('Overflow'); return; }
+  stack.push(val); document.getElementById('stackInput').value=''; document.getElementById('stackNote').textContent='تمت الإضافة إلى أعلى المكدس.'; renderStack();
+}
+function popStack(){
+  if(!stack.length){ document.getElementById('stackNote').textContent='Underflow: لا يمكن الحذف لأن المكدس فارغ.'; toast('Underflow'); return; }
+  const x=stack.pop(); document.getElementById('stackNote').textContent='تم حذف العنصر: '+x; renderStack();
+}
+function resetStack(){ stack=[]; renderStack(); document.getElementById('stackNote').textContent='Top يشير إلى أعلى عنصر في المكدس.'; }
+
+function renderQueue(){
+  const v=document.getElementById('queueView');
+  v.innerHTML = queueArr.length ? queueArr.map((x,i)=>`<div class="block">${i===0?'Front ':''}${x}${i===queueArr.length-1?' Rear':''}</div>`).join('') : '<span class="pill">الطابور فارغ</span>';
+}
+function enqueue(){
+  const val=document.getElementById('queueInput').value.trim() || (queueArr.length+1);
+  queueArr.push(val); document.getElementById('queueInput').value=''; document.getElementById('queueNote').textContent='تمت الإضافة عند Rear.'; renderQueue();
+}
+function dequeue(){
+  if(!queueArr.length){ document.getElementById('queueNote').textContent='Underflow: لا يمكن الحذف لأن الطابور فارغ.'; toast('الطابور فارغ'); return; }
+  const x=queueArr.shift(); document.getElementById('queueNote').textContent='تم حذف العنصر من Front: '+x; renderQueue();
+}
+function resetQueue(){ queueArr=[]; renderQueue(); document.getElementById('queueNote').textContent='Front عند أول عنصر وRear عند آخر عنصر.'; }
+
+function renderNodes(){
+  const v=document.getElementById('linkedView');
+  v.innerHTML = nodes.length ? nodes.map(n=>`<span class="node">${n}</span>`).join('') + '<span class="pill">None</span>' : '<span class="pill">القائمة فارغة</span>';
+}
+function addNode(){ const val=document.getElementById('nodeInput').value.trim() || 'Node '+(nodes.length+1); nodes.push(val); document.getElementById('nodeInput').value=''; renderNodes(); }
+function removeNode(){ if(nodes.length) nodes.pop(); else toast('القائمة فارغة'); renderNodes(); }
+function resetNodes(){ nodes=[]; renderNodes(); }
+
+function renderFlash(){ document.getElementById('flashText').textContent = flashAnswer ? flashcards[flashIndex][1] : flashcards[flashIndex][0]; }
+function flipCard(){ flashAnswer=!flashAnswer; renderFlash(); }
+function nextCard(){ flashIndex=(flashIndex+1)%flashcards.length; flashAnswer=false; renderFlash(); }
+function prevCard(){ flashIndex=(flashIndex-1+flashcards.length)%flashcards.length; flashAnswer=false; renderFlash(); }
+
+function renderPractice(){
+  document.getElementById('practiceList').innerHTML = practice.map((p,i)=>`
+    <div class="practice-item">
+      <b>تدريب ${i+1}:</b> ${p[0]}
+      <div><button class="btn secondary small" onclick="togglePractice(${i})">إظهار / إخفاء الحل</button></div>
+      <div class="practice-answer" id="pa${i}">${p[1]}</div>
+    </div>`).join('');
+}
+function togglePractice(i){ const el=document.getElementById('pa'+i); el.style.display = el.style.display==='block'?'none':'block'; }
+
+function renderQuiz(){
+  const q=quiz[qIndex];
+  const chosen=answers[qIndex];
+  document.getElementById('quizProgress').style.width = ((qIndex+1)/quiz.length*100)+'%';
+  document.getElementById('quizBox').innerHTML = `
+    <div class="card">
+      <h3>السؤال ${qIndex+1} من ${quiz.length}</h3>
+      <p style="font-size:20px;color:var(--maroon2);font-weight:1000">${q.q}</p>
+      ${q.choices.map((c,i)=>`<button class="choice ${chosen!==null ? (i===q.a?'correct':(i===chosen?'wrong':'')) : ''}" onclick="answerQuestion(${i})">${c}</button>`).join('')}
+      ${chosen!==null ? `<div class="note"><b>الشرح:</b> ${q.ex}</div>` : ''}
+    </div>`;
+  updateResult();
+}
+function answerQuestion(i){ answers[qIndex]=i; renderQuiz(); }
+function nextQuestion(){ if(qIndex<quiz.length-1){qIndex++; renderQuiz();} else toast('وصلت إلى نهاية الاختبار'); }
+function prevQuestion(){ if(qIndex>0){qIndex--; renderQuiz();} }
+function restartQuiz(){ qIndex=0; answers=Array(quiz.length).fill(null); renderQuiz(); toast('تمت إعادة الاختبار'); }
+function updateResult(){
+  const answered=answers.filter(a=>a!==null).length;
+  const score=answers.reduce((s,a,i)=>s+(a===quiz[i].a?1:0),0);
+  const pct=answered?Math.round(score/quiz.length*100):0;
+  document.getElementById('quizResult').textContent = `أجبت عن ${answered} من ${quiz.length} | الدرجة الحالية: ${score} / ${quiz.length} | النسبة: ${pct}%`;
+}
+
+renderLessonTabs(); showLesson(0); renderComparisons(); renderStack(); renderQueue(); renderNodes(); renderFlash(); renderPractice(); renderQuiz();
+</script>
+</body>
+</html>
